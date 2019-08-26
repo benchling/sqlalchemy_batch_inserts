@@ -33,7 +33,7 @@ enable_batch_inserting(SignallingSession)
 ## Acknowledgements
 
 This is all possible thanks to @dvarrazzo's psycopg2 [execute_batch](http://initd.org/psycopg/docs/extras.html#fast-execution-helpers)
-and @zzzeek's SQLAlchemy [support for the same](https://docs.sqlalchemy.org/en/latest/dialects/postgresql.html#psycopg2-batch-mode)
+and @zzzeek's SQLAlchemy [support for the same](https://docs.sqlalchemy.org/en/13/dialects/postgresql.html#psycopg2-fast-execution-helpers)
 and [helpful](https://groups.google.com/forum/#!topic/sqlalchemy/GyAZTThJi2I)
 [advice](https://groups.google.com/forum/#!msg/sqlalchemy/l02TH_m1DkU/7PMlF8HzAgAJ) on the mailing list.
 """
