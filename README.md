@@ -65,8 +65,7 @@ and [helpful](https://groups.google.com/forum/#!topic/sqlalchemy/GyAZTThJi2I)
 After bumping the `version` in `setup.py` and `__version__` in `__init__.py`,
 
 ```
-$ ./setup.py sdist bdist_wheel  # Generate source and py3 wheel
-$ python2 setup.py bdist_wheel  # Generate py2 wheel
+$ ./setup.py sdist
 $ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 # Check https://test.pypi.org/project/sqlalchemy-batch-inserts/
 $ twine upload dist/*
