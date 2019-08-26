@@ -178,7 +178,7 @@ def enable_batch_inserting(sqla_session):
         session.commit()
 
     Previously, this would perform 10 separate INSERT statements and incur the overhead of 10
-    separate queries to the database. With execute_batch_mode, pscyopg2 will group similar INSERTs
+    separate queries to the database. With execute_batch_mode, psycopg2 will group similar INSERTs
     together and send them to the database together (in groups of 100 by default).
 
     To actually allow execute_batch_mode to do grouping well, we need to do two things:

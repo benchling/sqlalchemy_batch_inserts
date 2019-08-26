@@ -6,6 +6,9 @@ long_description = """
 Benchling uses SQLAlchemy and psycopg2 to talk to PostgreSQL.
 To save on round-trip latency, we batch our inserts using this code.
 
+In summary, flushing 100 models in SQLAlchemy does 100 roundtrips to the database if the model has an autoincrementing primary key.
+This module improves this to 2 roundtrips without requiring any other changes to your code.
+
 ## Usage
 
 ```
@@ -26,6 +29,13 @@ from flask_sqlalchemy import SignallingSession
 
 enable_batch_inserting(SignallingSession)
 ```
+
+## Acknowledgements
+
+This is all possible thanks to @dvarrazzo's psycopg2 [execute_batch](http://initd.org/psycopg/docs/extras.html#fast-execution-helpers)
+and @zzzeek's SQLAlchemy [support for the same](https://docs.sqlalchemy.org/en/latest/dialects/postgresql.html#psycopg2-batch-mode)
+and [helpful](https://groups.google.com/forum/#!topic/sqlalchemy/GyAZTThJi2I)
+[advice](https://groups.google.com/forum/#!msg/sqlalchemy/l02TH_m1DkU/7PMlF8HzAgAJ) on the mailing list.
 """
 
 setuptools.setup(
