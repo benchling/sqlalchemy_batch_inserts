@@ -48,7 +48,7 @@ def main():
     except ValueError:
         usage_and_exit()
 
-    engine = create_engine("postgresql+psycopg2://postgres@localhost", use_batch_mode=True, echo=count <= 100)
+    engine = create_engine("postgresql+psycopg2://postgres@localhost", executemany_mode="values", echo=count <= 100)
     Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)

@@ -11,7 +11,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_batch_inserts import enable_batch_inserting
 
-engine = create_engine("postgresql+psycopg2://postgres@localhost", use_batch_mode=True)
+engine = create_engine("postgresql+psycopg2://postgres@localhost", executemany_mode="values")  # SQLAlchemy < 1.3.7 needs use_batch_mode=True instead
 Session = sessionmaker(bind=engine)
 session = Session()
 enable_batch_inserting(session)
