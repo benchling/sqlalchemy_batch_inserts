@@ -17,12 +17,14 @@ session = Session()
 enable_batch_inserting(session)
 ```
 
-If you use [Flask-SQLALchemy](https://flask-sqlalchemy.palletsprojects.com/),
+If you use [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/),
 
 ```python
 from flask_sqlalchemy import SignallingSession
 from sqlalchemy_batch_inserts import enable_batch_inserting
 
+# Make sure that you've specified executemany_mode or use_batch_mode when creating your engine! Otherwise
+# this library will not have any effect.
 enable_batch_inserting(SignallingSession)
 ```
 
