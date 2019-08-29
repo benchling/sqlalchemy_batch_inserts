@@ -1,8 +1,14 @@
 Benchling uses SQLAlchemy and psycopg2 to talk to PostgreSQL.
 To save on round-trip latency, we batch our inserts using this code.
 
-In summary, flushing 100 models in SQLAlchemy does 100 roundtrips to the database if the model has an autoincrementing primary key.
-This module improves this to 2 roundtrips without requiring any other changes to your code.
+Typically, creating and flushing N models in SQLAlchemy does N roundtrips to the database if the model has an autoincrementing primary key.
+This module **improves creating N models to only require 2 roundtrips**, without requiring any other changes to your code.
+
+## Is this for me?
+You may find use for this module if:
+- You are using SQLAlchemy
+- You are using Postgres
+- You sometimes need to create several models at once and care about performance
 
 ## Usage
 
