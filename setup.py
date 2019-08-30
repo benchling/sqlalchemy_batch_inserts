@@ -6,8 +6,14 @@ long_description = """
 Benchling uses SQLAlchemy and psycopg2 to talk to PostgreSQL.
 To save on round-trip latency, we batch our inserts using this code.
 
-In summary, flushing 100 models in SQLAlchemy does 100 roundtrips to the database if the model has an autoincrementing primary key.
-This module improves this to 2 roundtrips without requiring any other changes to your code.
+Typically, creating and flushing N models in SQLAlchemy does N roundtrips to the database if the model has an autoincrementing primary key.
+This module **improves creating N models to only require 2 roundtrips**, without requiring any other changes to your code.
+
+## Is this for me?
+You may find use for this module if:
+- You are using SQLAlchemy
+- You are using Postgres
+- You sometimes need to create several models at once and care about performance
 
 ## Usage
 
@@ -16,7 +22,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_batch_inserts import enable_batch_inserting
 
-engine = create_engine("postgresql+psycopg2://postgres@localhost", use_batch_mode=True)
+engine = create_engine("postgresql+psycopg2://postgres@localhost", executemany_mode="values")  # SQLAlchemy < 1.3.7 needs use_batch_mode=True instead
 Session = sessionmaker(bind=engine)
 session = Session()
 enable_batch_inserting(session)
@@ -26,7 +32,10 @@ If you use [Flask-SQLALchemy](https://flask-sqlalchemy.palletsprojects.com/),
 
 ```
 from flask_sqlalchemy import SignallingSession
+from sqlalchemy_batch_inserts import enable_batch_inserting
 
+# Make sure that you've specified executemany_mode or use_batch_mode when creating your engine! Otherwise
+# this library will not have any effect.
 enable_batch_inserting(SignallingSession)
 ```
 
