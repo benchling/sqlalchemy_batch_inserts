@@ -4,6 +4,9 @@ To save on round-trip latency, we batch our inserts using this code.
 Typically, creating and flushing N models in SQLAlchemy does N roundtrips to the database if the model has an autoincrementing primary key.
 This module **improves creating N models to only require 2 roundtrips**, without requiring any other changes to your code.
 
+Here's our accompanying blog post that describes how we investigated and improved insert performance:
+[`sqlalchemy_batch_inserts`: a module for when you’re inserting thousands of rows and it’s slow](https://benchling.engineering/sqlalchemy-batch-inserts-a-module-for-when-youre-inserting-thousands-of-rows-and-it-s-slow-16ece0ef5bf7)
+
 ## Is this for me?
 You may find use for this module if:
 - You are using SQLAlchemy
