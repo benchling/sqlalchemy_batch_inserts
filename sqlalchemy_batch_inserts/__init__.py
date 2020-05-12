@@ -59,7 +59,8 @@ def _get_next_sequence_values(session, base_mapper, num_values):
     ), "_get_next_sequence_values assumes that the sequence produces integer values"
 
     id_seq_name = _get_id_sequence_name(base_mapper)
-    sequence = sqlalchemy.Sequence(id_seq_name)
+    schema = base_mapper.entity.__table__.metadata.schema
+    sequence = sqlalchemy.Sequence(id_seq_name, schema=schema)
 
     # Select the next num_values from `sequence`
     raw_ids = tuples_to_scalar_list(
