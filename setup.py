@@ -49,7 +49,7 @@ and [helpful](https://groups.google.com/forum/#!topic/sqlalchemy/GyAZTThJi2I)
 
 setuptools.setup(
     name="sqlalchemy_batch_inserts",
-    version="0.0.1",
+    version="0.0.2",
     author="Vineet Gopal",
     author_email="vineet@benchling.com",
     description="Batch inserts for SQLAlchemy on PostgreSQL with psycopg2",
