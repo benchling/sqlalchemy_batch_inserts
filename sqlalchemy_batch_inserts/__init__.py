@@ -4,7 +4,7 @@ import warnings
 import sqlalchemy
 
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 
 def _group_models_by_base_mapper(initial_models):
